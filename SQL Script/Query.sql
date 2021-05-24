@@ -1,15 +1,15 @@
 CREATE DATABASE RestaurantVisitingDB
 USE RestaurantVisitingDB
 
---DROP TABLE IF EXISTS Dim_Cuisine
+DROP TABLE IF EXISTS Dim_Cuisine
 CREATE TABLE Dim_Cuisine(
 cuisineID INT PRIMARY KEY NOT NULL,
 cuisineName NVARCHAR(255 ) NOT NULL,
 loadDate DATETIME DEFAULT(GETDATE()) NOT NULL,
 loadEndDate DATETIME DEFAULT('9999-01-01 23:59:59') NOT NULL
 )
---DROP TABLE IF EXISTS Dim_Place
 
+DROP TABLE IF EXISTS Dim_Place
 CREATE TABLE Dim_Place(
 placeID INT PRIMARY KEY NOT NULL,
 restaurantName NVARCHAR(255) NOT NULL,
@@ -23,7 +23,7 @@ CONSTRAINT FK_Dim_Cuisine_Dim_Place FOREIGN KEY (cuisineID)
 )
 
 
---DROP TABLE IF EXISTS Dim_Reservation
+DROP TABLE IF EXISTS Dim_Reservation
 CREATE TABLE Dim_Reservation(
 reserveID INT PRIMARY KEY NOT NULL,
 dateID INT NOT NULL,
@@ -45,7 +45,7 @@ dayOfTheWeekID INT PRIMARY KEY NOT NULL,
 dayOfTheWeekName NVARCHAR(255) NOT NULL
 )
 
---DROP TABLE IF EXISTS Dim_Date
+DROP TABLE IF EXISTS Dim_Date
 CREATE TABLE Dim_Date(
 dateID INT PRIMARY KEY NOT NULL,
 dayValue DATE NOT NULL,
@@ -58,7 +58,7 @@ CONSTRAINT FK_Dim_DayOfTheWeek_Dim_Date FOREIGN KEY (dayOfTheWeekID)
 
 )
 
-DROP TABLE Fact_RestaurantVisiting
+DROP TABLE IF EXISTS Fact_RestaurantVisiting
 CREATE TABLE Fact_RestaurantVisiting(
 dateID INT NOT NULL,
 placeID INT NOT NULL,
