@@ -13,7 +13,7 @@ library(forecast)
 library("gridExtra")
 
 
-setwd("d:/Studying/4 семестр/Аналіз даних/Курсова робота")
+setwd("d:/Studying/4thsemester")
 
 connStr<- "Driver={SQL Server};Server=LT-ALEXEI\\MSSQLSERVER01;Database=RestaurantVisitingDB"
 db <- odbcDriverConnect(connStr, case="nochange")
@@ -340,7 +340,7 @@ Proof.Residuals <- function(x)
   
   TestOfResiduals$NormalityOfResiduals <-
     ifelse(shapiro.test(residuals(x))$p.value > 0.05, "Normality of Residuals is TRUE", "Normality of Residuals is FALSE")
-  #"остатки распределены нормально","остатки не распределены нормально")
+  #"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ","пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")
   
   print( Acf(residuals(x), lag.max=frequency(x$residuals)*2, plot=FALSE) )
   print( Pacf(residuals(x), lag.max=frequency(x$residuals)*2, plot=FALSE))
@@ -401,10 +401,6 @@ getScatterplot(dataWholeAmount,
                )
 
 
-
-
-
-
 #dividing data into 3 sets
 train.ts <- window(df.ts, start=2016, end=2018 )
 validation.ts <- window(df.ts, start=2017, end=2018 +4/frequency(df.ts))
@@ -424,15 +420,10 @@ autoplot(fit.stl)+ xlab("Year") +
     of reservation seats in restaurant")
 
 
-
 #Forecasting train set
 (fcast.stl <- forecast(fit.stl, h=hf, method="naive"))
 
-
 Autoplot.Forecast(fcast.stl, validation.ts)
-
-
-
 
 # Automatic selection of Box Cox transformation parameter for Forecasting
 lam <- 0 
